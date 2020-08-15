@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+git submodule update --init --recursive
+
 ln -s -f ~/dotfiles/git/gitconfig ~/.gitconfig
 ln -s -f ~/dotfiles/zsh/zshrc ~/.zshrc
 
