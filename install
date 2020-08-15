@@ -4,4 +4,5 @@ ln -s -f ~/dotfiles/git/gitconfig ~/.gitconfig
 ln -s -f ~/dotfiles/zsh/zshrc ~/.zshrc
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+ln -s -f ~/dotfiles/zsh/oh-my-zsh/custom ~/.oh-my-zsh/custom
 chsh -s /bin/zsh
