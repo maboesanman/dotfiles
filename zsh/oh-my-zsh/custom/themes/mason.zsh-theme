@@ -24,28 +24,26 @@ function git_remote_display {
 }
 
 function git_display {
-  g=($(git_remote_display) $(git_prompt_info))
-  echo "${(@j. .)g:#}"
+  echo "$(git_remote_display)$(git_prompt_info)"
 }
 
 function prompt {
-  p=($ret_status $(pwd_display) $(git_display))
-  echo "${(@j. .)p:#}"
+  echo "$ret_status $(pwd_display)$(git_display)"
 }
 
 PROMPT='$(prompt) '
 
 # set the git_prompt_info text
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[cyan]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[cyan]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[yellow]%}✗%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}✓%{$reset_color%}"
 
 # set the git_remote_status text
 ZSH_THEME_GIT_PROMPT_EQUAL_REMOTE=""
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="↑"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="↓"
-ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="⇅"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" ↑"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" ↓"
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE=" ⇅"
 ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_PREFIX="%{$fg[yellow]%}"
 ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_SUFFIX="%{$reset_color%}"
 
