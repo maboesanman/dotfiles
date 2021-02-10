@@ -118,3 +118,4 @@ export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 # export PATH=${PATH}:${NODE_PATH}
 
 alias git_prune_merged='git checkout master && comm -12 <(git branch | sed "s/ *//g") <(git remote prune origin | sed "s/^.*origin\///g") | xargs -L1 -J % git branch -D %'
+alias glo=git-local-organizer
