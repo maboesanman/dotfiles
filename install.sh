@@ -2,18 +2,44 @@
 
 git submodule update --init --recursive
 
-ln -s -f ~/dotfiles/git/gitconfig ~/.gitconfig
-ln -s -f ~/dotfiles/zsh/zshrc ~/.zshrc
+### GIT
+[ -f ~/.gitconfig ] && mv ~/.gitconfig ~/.gitconfig.old
+ln -s -f $PWD/git/gitconfig ~/.gitconfig
 
+### OH MY ZSH
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-rm ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-rm ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-rm ~/.oh-my-zsh/custom/plugins/zsh-you-should-use
-rm ~/.oh-my-zsh/custom/themes/mason.zsh-theme
+# remove existing symlinks
+mkdir -p ~/.oh-my-zsh/custom/
+find ~/.oh-my-zsh/custom/ -type l -exec rm "{}" \;
 
-ln -s -f ~/dotfiles/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-ln -s -f ~/dotfiles/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-ln -s -f ~/dotfiles/zsh/oh-my-zsh/custom/plugins/zsh-you-should-use ~/.oh-my-zsh/custom/plugins/zsh-you-should-use
-ln -s -f ~/dotfiles/zsh/oh-my-zsh/custom/themes/mason.zsh-theme ~/.oh-my-zsh/custom/themes/mason.zsh-theme
-chsh -s /bin/zsh
+# symlink all plugins
+find ./zsh/oh-my-zsh/custom/plugins \
+  -type d \
+  -depth 1 \
+| sed "
+h
+s|./zsh/|$HOME/.|
+x
+s|./|$PWD/|
+G
+s|^\(.*\)\n\(.*\)$|ln -s \1 \2|
+" | sh
+
+# symlink all themes
+find ./zsh/oh-my-zsh/custom/themes \
+  -type f \
+  -name "*.zsh-theme" \
+| sed "
+h
+s|./zsh/|$HOME/.|
+x
+s|./|$PWD/|
+G
+s|^\(.*\)\n\(.*\)$|ln -s \2 \1|
+" | sh
+
+# link zshrc
+ln -s -f $PWD/zsh/zshrc ~/.zshrc
+
+# chsh -s /bin/zsh

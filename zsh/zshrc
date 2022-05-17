@@ -63,14 +63,10 @@ ZSH_THEME="mason"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  osx
-  python
-  pyenv
+  macos
   node
   npm
   rust
-  rustup
-  # zsh-you-should-use
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
@@ -109,13 +105,7 @@ DEFAULT_USER=$USER
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # eval "$(pyenv init -)"
 
-export REACT_EDITOR=code
-export ANDROID_HOME=~/Library/Android/sdk
-# export NODE_PATH=$(npm root -g)
-
-export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 # export PATH=${PATH}:/Users/Mason/Tools/depot_tools/
 # export PATH=${PATH}:${NODE_PATH}
 
-alias git_prune_merged='git checkout master && comm -12 <(git branch | sed "s/ *//g") <(git remote prune origin | sed "s/^.*origin\///g") | xargs -L1 -J % git branch -D %'
 alias glo=git-local-organizer
