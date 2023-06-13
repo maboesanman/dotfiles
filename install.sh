@@ -40,6 +40,7 @@ s|^\(.*\)\n\(.*\)$|ln -s \1 \2|
 " | sh
 
 # link zshrc
-ln -s -f $PWD/zsh/zshrc ~/.zshrc
+rm ~/.zshrc
+cp ./zsh/zshrc ~/.zshrc
 
 # chsh -s /bin/zsh
