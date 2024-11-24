@@ -15,8 +15,9 @@ find ~/.oh-my-zsh/custom/ -type l -exec rm "{}" \;
 
 # symlink all plugins
 find ./zsh/oh-my-zsh/custom/plugins \
+  -maxdepth 1 \
+  -mindepth 1 \
   -type d \
-  -depth 1 \
 | sed "
 h
 s|./zsh/|$HOME/.|
